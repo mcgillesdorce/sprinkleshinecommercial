@@ -1,0 +1,118 @@
+---
+import { site } from '../data/site';
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <img src="/images/logo.png" alt="" width="64" height="64" loading="lazy" />
+      <p class="footer-tagline">{site.tagline}</p>
+      <p class="footer-area">
+        Proudly serving {site.serviceArea}: {site.cities.join(', ')} and surrounding communities across
+        {' '}{site.counties.join(', ')}.
+      </p>
+    </div>
+
+    <nav class="footer-col" aria-label="Services">
+      <h3>Services</h3>
+      <a href="/commercial-cleaning">Commercial cleaning</a>
+      <a href="/residential-cleaning">Residential cleaning</a>
+      <a href="/get-a-quote">Get a free quote</a>
+    </nav>
+
+    <div class="footer-col">
+      <h3>Contact</h3>
+      <a href={site.phoneHref}>{site.phone}</a>
+      <a href={site.smsHref}>Text us</a>
+      <p>{site.hours}</p>
+      <p>{site.serviceArea}</p>
+    </div>
+  </div>
+
+  <div class="container footer-legal">
+    <p>© {year} {site.name}. All rights reserved.</p>
+    <a href="/privacy-policy">Privacy policy</a>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--navy);
+    color: var(--mist-soft);
+    padding-block: 3.5rem 1.5rem;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 2.5rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .footer-brand img {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 4px;
+    margin-bottom: 1rem;
+  }
+
+  .footer-tagline {
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.75rem;
+  }
+
+  .footer-area {
+    font-size: 0.95rem;
+    opacity: 0.85;
+  }
+
+  .footer-col {
+    display: grid;
+    gap: 0.55rem;
+    align-content: start;
+  }
+
+  .footer-col h3 {
+    color: var(--white);
+    font-size: 1.05rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .footer-col a {
+    color: var(--mist-soft);
+    text-decoration: none;
+    font-size: 0.98rem;
+  }
+
+  .footer-col a:hover {
+    color: var(--sun);
+  }
+
+  .footer-col p {
+    font-size: 0.98rem;
+  }
+
+  .footer-legal {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding-top: 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  .footer-legal a {
+    color: var(--mist-soft);
+  }
+
+  @media (max-width: 760px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+</style>

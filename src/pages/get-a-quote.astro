@@ -1,0 +1,319 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+
+const serviceOptions = [
+  'Recurring cleaning',
+  'Deep cleaning',
+  'Move-in / move-out',
+  'Post-construction cleanup',
+  'Office / janitorial',
+  'Floor & carpet care',
+  'Windows',
+  'Sanitizing & disinfection',
+  'Other',
+];
+---
+
+<Base
+  title="Get a Free Cleaning Quote | Sparkle & Shine Cleaning | Central Florida"
+  description="Request a free, no-obligation cleaning quote for your Central Florida home or business. Fast replies — or call 888-404-8146."
+>
+  <section class="section quote-section">
+    <div class="container quote-grid">
+      <div class="quote-intro">
+        <p class="eyebrow">Free quote</p>
+        <h1>Tell us about your space</h1>
+        <p class="lead">
+          Fill this out and we'll send a customized, no-obligation quote. The more detail you share, the more
+          accurate your quote will be.
+        </p>
+        <div class="contact-card card">
+          <h2>Prefer to reach out directly?</h2>
+          <a href={site.phoneHref} class="contact-line">Call {site.phone}</a>
+          <a href={site.smsHref} class="contact-line">Text {site.phone}</a>
+          <p class="contact-hours">{site.hours}</p>
+          <p class="contact-area">Serving {site.serviceArea}: {site.cities.join(', ')} & nearby.</p>
+        </div>
+      </div>
+
+      <form class="quote-form card" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value={site.web3formsKey} />
+        <input type="hidden" name="subject" value="New quote request — sparkleshinecommercialcleaning.com" />
+        <input type="hidden" name="from_name" value="Sparkle & Shine Website" />
+        <input type="hidden" name="redirect" value={`${site.url}/thank-you`} />
+        <input type="checkbox" name="botcheck" class="visually-hidden" tabindex="-1" aria-hidden="true" />
+
+        <fieldset class="type-choice">
+          <legend>I need</legend>
+          <div class="type-options">
+            <label class="type-pill">
+              <input type="radio" name="cleaning_type" value="Home cleaning" required />
+              <span>Home cleaning</span>
+            </label>
+            <label class="type-pill">
+              <input type="radio" name="cleaning_type" value="Business cleaning" />
+              <span>Business cleaning</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <div class="field-row">
+          <div>
+            <label for="name">Full name *</label>
+            <input id="name" name="name" type="text" autocomplete="name" required />
+          </div>
+          <div>
+            <label for="phone">Phone *</label>
+            <input id="phone" name="phone" type="tel" autocomplete="tel" required />
+          </div>
+        </div>
+
+        <div>
+          <label for="email">Email *</label>
+          <input id="email" name="email" type="email" autocomplete="email" required />
+        </div>
+
+        <div>
+          <label for="address">Service address (street, city, ZIP) *</label>
+          <input id="address" name="address" type="text" autocomplete="street-address" required />
+        </div>
+
+        <div class="field-row">
+          <div>
+            <label for="property_type">Property type</label>
+            <select id="property_type" name="property_type">
+              <option value="">Select…</option>
+              <optgroup label="Residential">
+                <option>House</option>
+                <option>Apartment</option>
+                <option>Condo</option>
+              </optgroup>
+              <optgroup label="Commercial">
+                <option>Office</option>
+                <option>Retail</option>
+                <option>Medical</option>
+                <option>Restaurant</option>
+                <option>Warehouse</option>
+                <option>Other commercial</option>
+              </optgroup>
+            </select>
+          </div>
+          <div>
+            <label for="size">Approx. size (sq ft or beds/baths)</label>
+            <input id="size" name="size" type="text" placeholder="e.g. 1,800 sq ft or 3 bed / 2 bath" />
+          </div>
+        </div>
+
+        <fieldset>
+          <legend>Services wanted</legend>
+          <div class="service-checks">
+            {serviceOptions.map((s) => (
+              <label class="check-pill">
+                <input type="checkbox" name="services" value={s} />
+                <span>{s}</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+
+        <div class="field-row">
+          <div>
+            <label for="frequency">Frequency</label>
+            <select id="frequency" name="frequency">
+              <option>One-time</option>
+              <option>Weekly</option>
+              <option>Bi-weekly</option>
+              <option>Monthly</option>
+              <option>Custom</option>
+            </select>
+          </div>
+          <div>
+            <label for="preferred_date">Preferred date & time</label>
+            <input id="preferred_date" name="preferred_date" type="text" placeholder="e.g. weekday mornings, or a date" />
+          </div>
+        </div>
+
+        <div>
+          <label for="notes">Anything else we should know?</label>
+          <textarea id="notes" name="notes" rows="4" placeholder="Pets, access instructions, problem areas, special requests…"></textarea>
+        </div>
+
+        <div>
+          <label for="referral">How did you hear about us?</label>
+          <input id="referral" name="referral" type="text" />
+        </div>
+
+        <label class="consent">
+          <input type="checkbox" name="consent" value="Yes" required />
+          <span>You may contact me about this request. See our <a href="/privacy-policy">privacy policy</a>. *</span>
+        </label>
+
+        <button type="submit" class="btn btn-sun submit-btn">Send my quote request</button>
+        <p class="reply-note">We typically reply within one business day — faster by phone.</p>
+      </form>
+    </div>
+  </section>
+</Base>
+
+<script>
+  // Pre-select cleaning type from ?type= query (commercial | residential)
+  const type = new URLSearchParams(window.location.search).get('type');
+  if (type) {
+    const value = type.startsWith('c') ? 'Business cleaning' : 'Home cleaning';
+    const radio = document.querySelector<HTMLInputElement>(`input[name="cleaning_type"][value="${value}"]`);
+    if (radio) radio.checked = true;
+  }
+</script>
+
+<style>
+  .quote-section {
+    background:
+      radial-gradient(ellipse at 90% 10%, rgba(143, 211, 220, 0.3), transparent 55%),
+      var(--cloud);
+  }
+
+  .quote-grid {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .quote-intro .lead {
+    margin-top: 1rem;
+  }
+
+  .contact-card {
+    margin-top: 2rem;
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .contact-card h2 {
+    font-size: 1.15rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .contact-line {
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--navy);
+    text-decoration: none;
+  }
+
+  .contact-line:hover {
+    color: var(--aqua);
+  }
+
+  .contact-hours,
+  .contact-area {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+  }
+
+  .quote-form {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .quote-form:hover {
+    transform: none;
+    box-shadow: var(--shadow-sm);
+  }
+
+  legend {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--navy);
+    margin-bottom: 0.5rem;
+    font-family: var(--font-body);
+  }
+
+  .type-options {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .type-pill,
+  .check-pill {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 400;
+    color: var(--ink);
+    background: var(--cloud);
+    border: 1.5px solid var(--line);
+    border-radius: 999px;
+    padding: 0.55rem 1.1rem;
+    cursor: pointer;
+    margin: 0;
+  }
+
+  .type-pill:has(input:checked),
+  .check-pill:has(input:checked) {
+    background: var(--mist-soft);
+    border-color: var(--aqua);
+    color: var(--navy);
+    font-weight: 600;
+  }
+
+  .type-pill input,
+  .check-pill input {
+    width: auto;
+    accent-color: var(--aqua);
+  }
+
+  .service-checks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  .check-pill {
+    font-size: 0.92rem;
+    padding: 0.45rem 0.9rem;
+  }
+
+  .field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+
+  .consent {
+    display: flex;
+    gap: 0.6rem;
+    align-items: baseline;
+    font-weight: 400;
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+  }
+
+  .consent input {
+    width: auto;
+    accent-color: var(--aqua);
+  }
+
+  .submit-btn {
+    justify-self: start;
+    font-size: 1.05rem;
+    padding: 0.9rem 2.2rem;
+  }
+
+  .reply-note {
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+  }
+
+  @media (max-width: 860px) {
+    .quote-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .field-row {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

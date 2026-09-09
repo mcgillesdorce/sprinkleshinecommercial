@@ -1,0 +1,191 @@
+---
+import Base from '../layouts/Base.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { site } from '../data/site';
+
+const services = [
+  { name: 'Recurring house cleaning', desc: 'Weekly, bi-weekly, or monthly visits that keep your home consistently fresh.' },
+  { name: 'Deep cleaning', desc: 'A thorough scrubbing of all surfaces — perfect for a first visit or seasonal reset.' },
+  { name: 'Move-in / move-out cleaning', desc: 'Leave your old place spotless or start fresh in a truly clean home.' },
+  { name: 'Post-construction cleaning', desc: 'Dust and debris cleared after renovations so you can enjoy the new space.' },
+  { name: 'Carpet & upholstery cleaning', desc: 'Refreshed carpets, rugs, and furniture.' },
+  { name: 'Window cleaning', desc: 'Interior and exterior, streak-free.' },
+  { name: 'Kitchen & appliance cleaning', desc: 'Degreased, descaled, and gleaming — inside and out.' },
+  { name: 'Bathroom sanitization', desc: 'Deep-sanitized tubs, tile, grout, and fixtures.' },
+  { name: 'Laundry & folding', desc: 'Washed, dried, folded, and put away.' },
+  { name: 'Organization services', desc: 'Closets, pantries, and more — decluttered and arranged.' },
+];
+
+const rooms = [
+  { room: 'Kitchen', items: ['Counters & backsplash wiped', 'Sink & faucet shined', 'Appliance exteriors cleaned', 'Floors vacuumed & mopped', 'Trash emptied'] },
+  { room: 'Bathrooms', items: ['Toilet, tub & shower sanitized', 'Mirrors & glass polished', 'Tile & grout scrubbed', 'Fixtures shined', 'Floors disinfected'] },
+  { room: 'Bedrooms', items: ['Beds made', 'Surfaces & baseboards dusted', 'Mirrors cleaned', 'Floors vacuumed', 'Light tidying'] },
+  { room: 'Living areas', items: ['All surfaces dusted', 'Upholstery straightened', 'Glass & mirrors polished', 'Floors vacuumed & mopped', 'High-touch points wiped'] },
+];
+---
+
+<Base
+  title="House Cleaning in Central Florida | Sparkle & Shine Cleaning"
+  description="Recurring, deep, and move-in/out house cleaning across Central Florida. Come home to comfort, not chores. Free quotes — call 888-404-8146."
+>
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">Residential cleaning · {site.serviceArea}</p>
+      <h1>Come home to comfort, not chores</h1>
+      <p class="lead">
+        You work hard — your home should be your place to rest, not another item on your to-do list. From dusty
+        baseboards to cluttered kitchens, we take care of every detail so you come home to a fresh, safe, loved space.
+      </p>
+      <div class="hero-ctas">
+        <a href="/get-a-quote?type=residential" class="btn btn-sun">Get my free quote</a>
+        <a href={site.phoneHref} class="btn btn-outline">Call {site.phone}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Services</p>
+        <h2>Every kind of clean your home needs</h2>
+      </div>
+      <div class="grid grid-2">
+        {services.map((s) => (
+          <div class="card service-row">
+            <h3>{s.name}</h3>
+            <p>{s.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">What's included</p>
+        <h2>Room by room, nothing missed</h2>
+        <p>Every home is different — this is our baseline on a standard visit. Deep cleans go further.</p>
+      </div>
+      <div class="grid grid-4">
+        {rooms.map((r) => (
+          <div class="card">
+            <h3>{r.room}</h3>
+            <ul class="check-list room-list">
+              {r.items.map((item) => <li>{item}</li>)}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container faq-grid">
+      <div>
+        <p class="eyebrow">Good to know</p>
+        <h2>Common questions</h2>
+      </div>
+      <div class="faq-items">
+        <details>
+          <summary>Do I need to provide cleaning supplies?</summary>
+          <p>No — we bring our own professional supplies and equipment. If you prefer we use specific products in your home, just let us know.</p>
+        </details>
+        <details>
+          <summary>Are you pet-friendly?</summary>
+          <p>Absolutely. Tell us about your pets in the quote form and we'll make sure visits are calm and safe for them.</p>
+        </details>
+        <details>
+          <summary>Do I need to be home during the cleaning?</summary>
+          <p>It's up to you. Many clients provide entry instructions and come home to a finished clean.</p>
+        </details>
+        <details>
+          <summary>How does pricing work?</summary>
+          <p>Every quote is custom, based on your home's size, condition, and how often you'd like service. Quotes are free and carry no obligation.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    heading="Ready to feel at home again?"
+    text="Get a free, customized quote for your home — one-time deep clean or recurring service."
+  />
+</Base>
+
+<style>
+  .page-hero {
+    background:
+      radial-gradient(ellipse at 85% 15%, rgba(242, 181, 68, 0.18), transparent 55%),
+      radial-gradient(ellipse at 10% 90%, rgba(143, 211, 220, 0.3), transparent 50%),
+      var(--cloud);
+    padding-block: clamp(3.5rem, 8vw, 5.5rem);
+  }
+
+  .page-hero h1 {
+    max-width: 22ch;
+  }
+
+  .page-hero .lead {
+    margin-top: 1.1rem;
+  }
+
+  .hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    margin-top: 1.75rem;
+  }
+
+  .service-row h3 {
+    font-size: 1.15rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .service-row p {
+    color: var(--ink-soft);
+  }
+
+  .room-list {
+    margin-top: 0.9rem;
+    font-size: 0.95rem;
+  }
+
+  .faq-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .faq-items {
+    display: grid;
+    gap: 0.9rem;
+  }
+
+  details {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    padding: 1rem 1.25rem;
+  }
+
+  summary {
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--navy);
+    cursor: pointer;
+  }
+
+  details p {
+    margin-top: 0.75rem;
+    color: var(--ink-soft);
+  }
+
+  @media (max-width: 760px) {
+    .faq-grid {
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+    }
+  }
+</style>

@@ -1,0 +1,158 @@
+---
+import Base from '../layouts/Base.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { site } from '../data/site';
+
+const services = [
+  { name: 'Office cleaning', desc: 'Daily, weekly, or fully custom schedules — desks, common areas, kitchens, and conference rooms kept client-ready.' },
+  { name: 'Janitorial services', desc: 'Trash removal, restroom maintenance, and supply restocking so your facility runs smoothly.' },
+  { name: 'Carpet & floor care', desc: 'Vacuuming, mopping, stripping & waxing, and buffing for floors that shine.' },
+  { name: 'Window washing', desc: 'Streak-free glass, standard and high-rise.' },
+  { name: 'Sanitation & disinfection', desc: 'Detail disinfection for healthcare, food facilities, and high-touch surfaces.' },
+  { name: 'Post-construction cleanup', desc: 'Dust, debris, and residue gone — from job site to open-for-business.' },
+  { name: 'Retail store cleaning', desc: 'Sales floors, fitting rooms, and entryways that welcome customers.' },
+  { name: 'Warehouse & industrial', desc: 'Large-footprint cleaning that keeps operations safe and organized.' },
+  { name: 'Restaurant cleaning', desc: 'Kitchens, dining areas, and grease traps handled to a high standard.' },
+  { name: 'Event cleanup', desc: 'Before and after events — we set the stage and clear it.' },
+];
+
+const industries = ['Offices', 'Medical & dental', 'Restaurants', 'Retail', 'Warehouses', 'Schools & churches', 'Property managers'];
+---
+
+<Base
+  title="Commercial Cleaning in Central Florida | Sparkle & Shine Cleaning"
+  description="Office cleaning, janitorial, floor care, and disinfection for Central Florida businesses. Flexible after-hours schedules. Book a free walkthrough — 888-404-8146."
+>
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">Commercial cleaning · {site.serviceArea}</p>
+      <h1>Commercial cleaning that makes a lasting first impression</h1>
+      <p class="lead">
+        Your business says a lot before you even speak. Clean spaces impress clients, inspire teams, and reflect
+        your brand's standards — we keep yours spotless on a schedule that works around your hours.
+      </p>
+      <div class="hero-ctas">
+        <a href="/get-a-quote?type=commercial" class="btn btn-sun">Book a free walkthrough</a>
+        <a href={site.phoneHref} class="btn btn-outline">Call {site.phone}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Services</p>
+        <h2>Everything your facility needs</h2>
+      </div>
+      <div class="grid grid-2">
+        {services.map((s) => (
+          <div class="card service-row">
+            <h3>{s.name}</h3>
+            <p>{s.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Industries served</p>
+        <h2>Built for your kind of business</h2>
+      </div>
+      <ul class="industry-row">
+        {industries.map((name) => <li>{name}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container schedule-grid">
+      <div>
+        <p class="eyebrow">How commercial scheduling works</p>
+        <h2>On your hours, not ours</h2>
+      </div>
+      <ul class="check-list schedule-list">
+        <li><strong>After-hours & weekend service</strong> — we clean when your team is out, so business never slows down.</li>
+        <li><strong>Custom checklists</strong> — your priorities, documented and followed on every visit.</li>
+        <li><strong>Single point of contact</strong> — one person who knows your facility and answers fast.</li>
+        <li><strong>Free on-site walkthrough</strong> — we scope the work in person before quoting, no obligation.</li>
+      </ul>
+    </div>
+  </section>
+
+  <CtaBand
+    heading="Get a free walkthrough for your business"
+    text="We'll visit your facility, listen to what you need, and send a customized quote — no obligation."
+  />
+</Base>
+
+<style>
+  .page-hero {
+    background:
+      radial-gradient(ellipse at 85% 15%, rgba(143, 211, 220, 0.35), transparent 55%),
+      var(--cloud);
+    padding-block: clamp(3.5rem, 8vw, 5.5rem);
+  }
+
+  .page-hero h1 {
+    max-width: 22ch;
+  }
+
+  .page-hero .lead {
+    margin-top: 1.1rem;
+  }
+
+  .hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    margin-top: 1.75rem;
+  }
+
+  .service-row h3 {
+    font-size: 1.15rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .service-row p {
+    color: var(--ink-soft);
+  }
+
+  .industry-row {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .industry-row li {
+    background: var(--mist-soft);
+    color: var(--navy);
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.95rem;
+    border-radius: 999px;
+    padding: 0.6rem 1.3rem;
+  }
+
+  .schedule-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .schedule-list {
+    gap: 1.1rem;
+  }
+
+  @media (max-width: 760px) {
+    .schedule-grid {
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+    }
+  }
+</style>

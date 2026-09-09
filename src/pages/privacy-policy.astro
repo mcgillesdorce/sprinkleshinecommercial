@@ -1,0 +1,81 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+---
+
+<Base
+  title="Privacy Policy | Sparkle & Shine Cleaning"
+  description="How Sparkle & Shine Commercial / Residential Cleaning LLC collects, uses, and protects your information."
+>
+  <section class="section">
+    <div class="container policy">
+      <h1>Privacy policy</h1>
+      <p class="updated">Last updated: September 2026</p>
+
+      <h2>Who we are</h2>
+      <p>
+        {site.name} ("we", "us") operates {site.url}. We provide residential and commercial cleaning services in
+        {' '}{site.serviceArea}.
+      </p>
+
+      <h2>Information we collect</h2>
+      <p>
+        When you submit our quote request form, we collect the information you provide: your name, phone number,
+        email address, service address, property details, requested services, and any notes you include. If you
+        call or text us, we receive your phone number.
+      </p>
+
+      <h2>How we use it</h2>
+      <p>
+        We use your information solely to respond to your request, prepare your quote, schedule and deliver
+        cleaning services, and communicate with you about your service. We do not sell your personal information,
+        and we do not share it with third parties except the service providers needed to operate this site
+        (form delivery and website hosting).
+      </p>
+
+      <h2>Form processing</h2>
+      <p>
+        Quote form submissions are delivered to us by Web3Forms, a form processing service. Your submission is
+        transmitted securely and delivered to our business email.
+      </p>
+
+      <h2>Cookies & analytics</h2>
+      <p>
+        This site does not currently use advertising cookies. If we add analytics tools to understand site usage,
+        this policy will be updated to describe them.
+      </p>
+
+      <h2>Data retention</h2>
+      <p>
+        We keep quote requests and customer records only as long as needed to serve you and meet legal
+        obligations. You may ask us to delete your information at any time.
+      </p>
+
+      <h2>Contact</h2>
+      <p>
+        Questions about this policy or your data? Call us at <a href={site.phoneHref}>{site.phone}</a>.
+      </p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .policy {
+    max-width: 720px;
+  }
+
+  .policy h1 {
+    margin-bottom: 0.5rem;
+  }
+
+  .updated {
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+  }
+
+  .policy h2 {
+    font-size: 1.35rem;
+    margin: 2rem 0 0.6rem;
+  }
+</style>

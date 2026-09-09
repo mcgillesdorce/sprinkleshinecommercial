@@ -1,0 +1,49 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+---
+
+<Base
+  title="Page Not Found | Sparkle & Shine Cleaning"
+  description="That page got swept away. Head back home or request a free cleaning quote."
+>
+  <section class="section">
+    <div class="container nf">
+      <p class="code">404</p>
+      <h1>That page got swept away.</h1>
+      <p class="lead">Let's get you somewhere useful instead.</p>
+      <div class="nf-actions">
+        <a href="/" class="btn btn-navy">Home</a>
+        <a href="/get-a-quote" class="btn btn-sun">Get a quote</a>
+        <a href={site.phoneHref} class="btn btn-outline">Call {site.phone}</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .nf {
+    max-width: 640px;
+    text-align: center;
+    display: grid;
+    justify-items: center;
+    gap: 1rem;
+    padding-block: 3rem;
+  }
+
+  .code {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 4rem;
+    color: var(--mist);
+    line-height: 1;
+  }
+
+  .nf-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.9rem;
+    margin-top: 0.5rem;
+  }
+</style>

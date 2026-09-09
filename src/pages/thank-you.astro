@@ -1,0 +1,37 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+---
+
+<Base
+  title="Request Received | Sparkle & Shine Cleaning"
+  description="Thanks — your quote request is in. We'll reply within one business day. Need it faster? Call 888-404-8146."
+>
+  <section class="section">
+    <div class="container thanks">
+      <svg class="mark" viewBox="0 0 24 24" fill="#1F9AA8" aria-hidden="true"><path d="M12 2l2 6.5L20.5 10 14 12l-2 6.5L10 12 3.5 10 10 8.5z"/></svg>
+      <h1>Got it — your quote request is in.</h1>
+      <p class="lead">
+        We'll review the details and reply within one business day.
+        Need it faster? <a href={site.phoneHref}>Call {site.phone}</a> or <a href={site.smsHref}>text us</a>.
+      </p>
+      <a href="/" class="btn btn-navy">Back to home</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .thanks {
+    max-width: 620px;
+    text-align: center;
+    display: grid;
+    justify-items: center;
+    gap: 1.25rem;
+    padding-block: 3rem;
+  }
+
+  .mark {
+    width: 56px;
+    height: 56px;
+  }
+</style>
