@@ -1,0 +1,90 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+---
+
+<Base
+  title="Terms of Service | Sparkle & Shine Cleaning"
+  description="Terms of service for Sparkle & Shine Commercial / Residential Cleaning LLC — quotes, scheduling, cancellations, and liability."
+>
+  <section class="section">
+    <div class="container policy">
+      <h1>Terms of service</h1>
+      <p class="updated">Last updated: September 2026</p>
+
+      <h2>About these terms</h2>
+      <p>
+        These terms apply to cleaning services provided by {site.name} ("we", "us") in {site.serviceArea} and to
+        your use of {site.url}. By requesting a quote or booking a service, you agree to these terms.
+      </p>
+
+      <h2>Quotes</h2>
+      <p>
+        Quotes are free and carry no obligation. Each quote is customized to your space based on the information
+        you provide; if the actual condition or size of the space differs materially, we may revise the quote
+        before work begins.
+      </p>
+
+      <h2>Scheduling & access</h2>
+      <p>
+        Service dates and times are confirmed with you in advance. You are responsible for providing safe access
+        to the property at the scheduled time (keys, codes, or someone present, as agreed).
+      </p>
+
+      <h2>Cancellations & rescheduling</h2>
+      <p>
+        Plans change — just let us know as early as you can. Contact us at
+        {' '}<a href={site.phoneHref}>{site.phone}</a> to cancel or reschedule a visit.
+      </p>
+
+      <h2>Payment</h2>
+      <p>
+        Payment terms (amount, method, and timing) are confirmed with your quote before service begins.
+      </p>
+
+      <h2>Our work</h2>
+      <p>
+        If something isn't right with a cleaning, tell us promptly and we'll work with you to make it right.
+      </p>
+
+      <h2>Liability</h2>
+      <p>
+        We take care in your space. Report any damage claim to us as soon as possible after the visit so we can
+        address it. We are not responsible for pre-existing damage or wear.
+      </p>
+
+      <h2>Website use</h2>
+      <p>
+        Content on this site is provided for general information about our services and may change without
+        notice. Information you submit through the site is handled as described in our
+        {' '}<a href="/privacy-policy">privacy policy</a>.
+      </p>
+
+      <h2>Contact</h2>
+      <p>
+        Questions about these terms? Call us at <a href={site.phoneHref}>{site.phone}</a>.
+      </p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .policy {
+    max-width: 720px;
+  }
+
+  .policy h1 {
+    margin-bottom: 0.5rem;
+  }
+
+  .updated {
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+  }
+
+  .policy h2 {
+    font-size: 1.35rem;
+    margin: 2rem 0 0.6rem;
+  }
+</style>
